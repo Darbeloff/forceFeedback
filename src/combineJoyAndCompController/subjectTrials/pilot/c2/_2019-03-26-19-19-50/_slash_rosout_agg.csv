@@ -1,0 +1,6 @@
+rosbagTimestamp,header,seq,stamp,secs,nsecs,frame_id,level,name,msg,file,function,line,topics
+1553642391406120513,,1260,,1553642391,250581026,'',2,"""/optoforce_jacob_darbeloff_lab_10923_7674201314509048106""","""Starting to listen to the sensor""","""optoforce_node.py""","""OptoforceNode.run""",84,"[/optoforce_0, /rosout]"
+1553642391987419146,,1261,,1553642391,987265252,'',2,"""/recorder""","""Subscribing to /command2Arduino""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
+1553642391988796433,,1262,,1553642391,988674542,'',2,"""/recorder""","""Subscribing to /optoforce_0""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
+1553642391990511936,,1263,,1553642391,990309344,'',2,"""/recorder""","""Subscribing to /compForceTraj""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
+1553642391992445139,,1264,,1553642391,992277567,'',2,"""/recorder""","""Subscribing to /measurement2Arduino""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
