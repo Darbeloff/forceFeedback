@@ -8,7 +8,7 @@
 		<!-- sudo rmmod xpad && sudo xboxdrv -->
 		<!-- rosrun rosserial_python serial_node.py /dev/ttyACM1 -->
 		<!-- rosrun joy joy_node -->
-		<!--  cd gitRepos/forceFeedback && source devel/setup.bash && roslaunch combineJoyAndCompController allLaunch.launch-->
+		<!--  cd ~/gitRepos/forceFeedback && source devel/setup.bash && roslaunch combineJoyAndCompController allLaunch.launch-->
 
 		<!-- Combine control to arduino -->
 		<node pkg="combineJoyAndCompController" 
@@ -35,6 +35,6 @@
 			name="recorder" 
 			args="-a -o /home/jacob/gitRepos/forceFeedback/src/combineJoyAndCompController/subjectTrials/"/> 
 
-	<!-- Launch files -->
-		<include file="/home/jacob/gitRepos/forceFeedback/src/optoforce/optoforce/launch/optoforce.launch"/>
+	<!-- Launch files 
+		<include file="/home/jacob/gitRepos/forceFeedback/src/optoforce/optoforce/launch/optoforce.launch"/> -->
 </launch>

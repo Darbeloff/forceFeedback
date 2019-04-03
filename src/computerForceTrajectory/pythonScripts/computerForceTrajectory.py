@@ -26,8 +26,8 @@ def start():
 
 def genTraj(trajPubRate):
 	maxForceD = 15 # newtwons per second
-	minForce = -150
-	maxForce = 150
+	minForce = -75
+	maxForce = 75
 
 	trialLength = 20 # seconds
 
@@ -65,7 +65,7 @@ def sendTraj(trajPubRate, trajVec):
 		sendTraj = rospy.get_param("sendTraj",0)
 		if (sendTraj == 1) and (loopNum < len(trajVec)):
 			# do stuff
-			print(trajVec[loopNum])
+			# print(trajVec[loopNum])
 			compForceTrajPub.publish(trajVec[loopNum])
 			loopNum = loopNum + 1
 		else:

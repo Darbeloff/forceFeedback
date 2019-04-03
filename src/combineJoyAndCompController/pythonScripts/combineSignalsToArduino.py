@@ -19,7 +19,7 @@ def defineGlobalVars():
 
 def humCallback(data):
 	# max force
-	maxHumForce = 150 # newtons
+	maxHumForce = 75 # newtons
 
 	# make deadband because joy is annoying
 	joyForce = data.axes[1]
