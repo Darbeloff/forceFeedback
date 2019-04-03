@@ -70,7 +70,7 @@ def sendCommand():
 	# send send send
 	readyCount = 0
 	pubRate = 50 # hertz
-	constantForceOffset = 10
+	constantForceOffset = 0
 	sendTraj = rospy.set_param("sendTraj",0)
 	rate = rospy.Rate(pubRate) # hertz
 
@@ -94,7 +94,9 @@ def sendCommand():
 			cmd2ArduinoPub.publish(humForce)
 			measurement2ArduinoPub.publish(measurement)
 
-			if (optoforceReading > constantForceOffset*0.8) and (optoforceReading < constantForceOffset*1.2):
+			print()
+
+			if (optoforceReading > constantForceOffset - 1) and (optoforceReading < constantForceOffset + 1):
 				readyCount = readyCount + 1
 				print('counting up to send')
 			else:
