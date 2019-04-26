@@ -3,14 +3,16 @@
 <launch>
 	<!-- Parameters -->
 		<param name="sendTraj" value="0" type="double" />
-		<param name="letterTime" value="0.600" type="double" />
+		<param name="letterTime" value="1.00" type="double" />
 		<param name="letterPercentage" value="30.0" type="double" />
 
 	<!-- Nodes -->
 		<!-- sudo rmmod xpad && sudo xboxdrv -->
+		<!-- roscore -->
 		<!-- rosrun rosserial_python serial_node.py /dev/ttyACM1 -->
 		<!-- rosrun joy joy_node -->
-		<!--  cd ~/gitRepos/forceFeedback && source devel/setup.bash && roslaunch combineJoyAndCompController allLaunch.launch-->
+		<!-- roslaunch optoforce optoforce.launch -->
+		<!--  cd ~/gitRepos/forceFeedback && source devel/setup.bash && roslaunch combineJoyAndCompController all_launch_supervision.launch-->
 
 		<!-- Combine control to arduino -->
 		<node pkg="combineJoyAndCompController" 

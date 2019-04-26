@@ -85,7 +85,7 @@ def sendCommand():
 		if sendTraj == 1:
 			# publish that signal
 			print('sending')
-			cmd2ArduinoPub.publish(compForce)
+			cmd2ArduinoPub.publish(humForce)
 			measurement2ArduinoPub.publish(measurement)
 
 		else:

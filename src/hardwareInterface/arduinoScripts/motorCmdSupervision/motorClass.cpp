@@ -257,10 +257,10 @@ int motorClass::force_closedLoopController(void){
   currentCommandf = Pf+If+Df;
 
   currentCommandf = constrain(map(currentCommandf, -1000, 1000, -255, 255),-255,255);
-  if (currentCommandf < -0.001) {
+  if (currentCommandf > -0.001) {
     digitalWrite(_dirPin, HIGH);
   }
-  else if(currentCommandf > 0.001){
+  else if(currentCommandf < 0.001){
     digitalWrite(_dirPin, LOW);
   }
   analogWrite(_pwmPin,abs(currentCommandf));

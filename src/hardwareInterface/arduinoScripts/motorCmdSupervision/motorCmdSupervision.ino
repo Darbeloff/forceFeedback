@@ -19,8 +19,8 @@ ros::Publisher testingPub("testing", &testing);
 
 void commandCallback(const std_msgs::Float32& command)
 {
-    // set desired motor force derivative command
-    forceMotor.setMotorForceD(command.data);
+    // set desired motor force command
+    forceMotor.setMotorForce(command.data);
 }
 
 void measurementCallback(const std_msgs::Float32& measurement)
@@ -62,9 +62,9 @@ void loop ()
   if (printing > 1000)
   {  
   // send testing
-  testing.data = forceMotor.currentCommandfd;
+  testing.data = forceMotor.currentCommandf;
   testingPub.publish(&testing);
-
+  
   // Serial.println(forceMotor.MotorForce);
 
   // reset
@@ -72,7 +72,7 @@ void loop ()
   }
   
   // control motor
-  forceMotor.force_d_closedLoopController();
+  forceMotor.force_closedLoopController();
 
   printing = printing + 1;
 

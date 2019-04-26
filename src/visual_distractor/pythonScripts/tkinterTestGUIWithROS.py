@@ -14,41 +14,35 @@ def defineGlobalVars():
 	prevButtonState = 0 # starts off
 	global buttonChanged # tracks if button has changed state
 	buttonChanged = 0
-	global LT_prev_state # tracks previous state of button
-	LT_prev_state = 0 # starts off
-	global LT_changed # tracks if button has changed state
-	LT_changed = 0
-	global LB_prev_state # tracks previous state of button
-	LB_prev_state = 0 # starts off
-	global LB_changed # tracks if button has changed state
-	LB_changed = 0
-	global RT_prev_state # tracks previous state of button
-	RT_prev_state = 0 # starts off
-	global RT_changed # tracks if button has changed state
-	RT_changed = 0
-	global RB_prev_state # tracks previous state of button
-	LB_prev_state = 0 # starts off
-	global RB_changed # tracks if button has changed state
-	LB_changed = 0
+	global ljsb_prev_state # tracks previous state of button
+	ljsb_prev_state = 0 # starts off
+	global ljsb_changed # tracks if button has changed state
+	ljsb_changed = 0
+	global up_prev_state # tracks previous state of button
+	up_prev_state = 0 # starts off
+	global up_changed # tracks if button has changed state
+	up_changed = 0
+	global down_prev_state # tracks previous state of button
+	down_prev_state = 0 # starts off
+	global down_changed # tracks if button has changed state
+	down_changed = 0
+
 
 def joyCallback(data):
 	global color
 	global prevButtonState
 	global buttonChanged
-	global LT_prev_state
-	global LT_changed
-	global LB_prev_state
-	global LB_changed
-	global RT_prev_state
-	global RT_changed
-	global RB_prev_state
-	global RB_changed
+	global ljsb_prev_state
+	global ljsb_changed
+	global up_prev_state
+	global up_changed
+	global down_prev_state
+	global down_changed
 
 	buttonState = data.buttons[0]
-	LT_state = data.axes[4]
-	LB_state = data.buttons[4]
-	RT_state = data.axes[5]
-	RB_state = data.buttons[5]
+	ljsb_state = data.buttons[9]
+	up_state = data.axes[1]
+	down_state = data.axes[1]
 
 	# this tells us that the button state has changed, allow the program to send a new 1 or 2
 	if prevButtonState != buttonState:
@@ -64,35 +58,29 @@ def joyCallback(data):
 		visDistPub.publish(2)
 		buttonChanged = 0
 
-	if LT_prev_state != LT_state:
-		LT_changed = 1
+	if ljsb_prev_state != ljsb_state:
+		ljsb_changed = 1
 
-	if LB_prev_state != LB_state:
-		LB_changed = 1
+	if up_prev_state != up_state:
+		up_changed = 1
 
-	if RT_prev_state != RT_state:
-		RT_changed = 1
+	if down_prev_state != down_state:
+		down_changed = 1
 
-	if RB_prev_state != RB_state:
-		RB_changed = 1
-
-	if LT_state == 1 and LT_changed == 1: # if they press LT
+	if ljsb_state == 1 and ljsb_changed == 1: # if they press the left joystick button
 		visDistPub.publish(10)
 
-	if LB_state == 1 and LB_changed == 1: # if they press LT
+	if up_state == 1 and up_changed == 1: # if they press up on the joystick
 		visDistPub.publish(11)
 
-	if RT_state == 1 and RT_changed == 1: # if they press RT
+	if down_state == -1 and down_changed == 1: # if they press down on the joystick
 		visDistPub.publish(12)
 
-	if RB_state == 1 and RB_changed == 1: # if they press RT
-		visDistPub.publish(13)
-
 	prevButtonState = buttonState
-	LT_prev_state = LT_state
-	LB_prev_state = LB_state
-	RT_prev_state = RT_state
-	RB_prev_state = RB_state
+	ljsb_prev_state = ljsb_state
+	up_prev_state = up_state
+	down_prev_state = down_state
+
 
 def main():
 	# initialize node
@@ -139,6 +127,8 @@ def makeGUI():
 	global buttonPressed
 	numWhite = 0
 	first_time = True
+	prev_letter_choice = '1'
+	letterChoice = '1'
 
 	printString("Starting soon", "red")
 
@@ -155,7 +145,8 @@ def makeGUI():
 				first_time = False
 			else:
 				# get letter
-				letterChoice = random.choice(alphabet)
+				while letterChoice == prev_letter_choice:
+					letterChoice = random.choice(alphabet)
 
 				# get color (1 = white, 0 = yellow)
 				colorChoice = random.random()
@@ -171,6 +162,9 @@ def makeGUI():
 
 				# update currTime
 				currTime = time.time()
+
+				# update prev letter
+				prev_letter_choice = letterChoice
 
 				if currTime > endTime:
 					break
