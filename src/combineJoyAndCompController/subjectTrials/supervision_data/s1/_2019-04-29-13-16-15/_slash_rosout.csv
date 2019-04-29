@@ -1,0 +1,15 @@
+rosbagTimestamp,header,seq,stamp,secs,nsecs,frame_id,level,name,msg,file,function,line,topics
+1556558175795566871,,0,,1556555953,347510061,'',2,"""/joy_node""","""Opened joystick","""/tmp/binarydeb/ros-melodic-joy-1.12.0/src/joy_node.cpp""","""main""",255,"[/rosout, /diagnostics, /joy]"
+1556558175796045557,,25,,1556558167,778204917,'',4,"""/optoforce_jacob_darbeloff_lab_6500_6360949369271355473""","""Inbound TCP/IP connection failed","""tcpros_base.py""","""TCPROSServer._tcp_server_callback""",352,"[/optoforce_0, /rosout]"
+1556558175796847571,,14,,1556557618,172507047,'',2,"""/serial_node""","""Setup subscriber on measurement2Arduino [std_msgs/Float32]""","""SerialClient.py""","""SerialClient.setupSubscriber""",591,"[/command2Arduino, /diagnostics, /testing, /rosout, /measurement2Arduino]"
+1556558176601986012,,0,,1556558175,590874519,'',2,"""/recorder""","""Recording to /home/jacob/gitRepos/forceFeedback/src/combineJoyAndCompController/subjectTrials/_2019-04-29-13-16-15.bag.""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""Recorder",394,[]
+1556558176601991528,,1,,1556558175,591460104,'',2,"""/recorder""","""Subscribing to /rosout""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
+1556558176601994001,,2,,1556558175,593566766,'',2,"""/recorder""","""Subscribing to /rosout_agg""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
+1556558176601999785,,3,,1556558175,595779676,'',2,"""/recorder""","""Subscribing to /joy""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
+1556558176602006272,,4,,1556558175,597311739,'',2,"""/recorder""","""Subscribing to /testing""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
+1556558176602009067,,5,,1556558175,598589201,'',2,"""/recorder""","""Subscribing to /diagnostics""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
+1556558176602014035,,6,,1556558175,599851142,'',2,"""/recorder""","""Subscribing to /optoforce_0""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
+1556558176602295988,,7,,1556558176,601857935,'',2,"""/recorder""","""Subscribing to /visDistPub""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
+1556558176604651446,,8,,1556558176,604580421,'',2,"""/recorder""","""Subscribing to /command2Arduino""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
+1556558176606544154,,9,,1556558176,606508159,'',2,"""/recorder""","""Subscribing to /compForceTraj""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
+1556558176608192624,,10,,1556558176,608135658,'',2,"""/recorder""","""Subscribing to /measurement2Arduino""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
