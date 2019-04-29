@@ -39,7 +39,7 @@ def genTraj(trajPubRate):
 	end_time = int(np.array(random.sample(range(-5,5),1))) + 50 # 30 +/- 5 second trial but takes two seconds to get back down to 0
 
 	# pick desired force
-	desired_force = 5
+	desired_force = 8
 
 	# now generate reference points for just start and stop of trajectory
 	trajVecSparse = np.zeros(int(trialLength))
@@ -79,7 +79,7 @@ def genTraj(trajPubRate):
 
 		# insert into sparse trajectory
 		for j in range(fail_start_times[i],fail_end_time):
-			trajVecSparse[j] = trajVecSparse[j] + 3*np.array(fail_direction)
+			trajVecSparse[j] = trajVecSparse[j] + 4*np.array(fail_direction)
 
 	print(trajVecSparse)
 

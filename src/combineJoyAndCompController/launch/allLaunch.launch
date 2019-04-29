@@ -6,9 +6,10 @@
 
 	<!-- Nodes -->
 		<!-- sudo rmmod xpad && sudo xboxdrv -->
-		<!-- rosrun rosserial_python serial_node.py /dev/ttyACM1 -->
+		<!-- rosrun rosserial_python serial_node.py /dev/ttyACM0 -->
 		<!-- rosrun joy joy_node -->
-		<!--  cd ~/gitRepos/forceFeedback && source devel/setup.bash && roslaunch combineJoyAndCompController allLaunch.launch-->
+		<!-- roslaunch optoforce optoforce.launch -->
+		<!-- cd ~/gitRepos/forceFeedback && source devel/setup.bash && roslaunch combineJoyAndCompController allLaunch.launch-->
 
 		<!-- Combine control to arduino -->
 		<node pkg="combineJoyAndCompController" 

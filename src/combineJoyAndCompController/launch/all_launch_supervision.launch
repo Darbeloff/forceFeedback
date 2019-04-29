@@ -12,7 +12,7 @@
 		<!-- rosrun rosserial_python serial_node.py /dev/ttyACM1 -->
 		<!-- rosrun joy joy_node -->
 		<!-- roslaunch optoforce optoforce.launch -->
-		<!--  cd ~/gitRepos/forceFeedback && source devel/setup.bash && roslaunch combineJoyAndCompController all_launch_supervision.launch-->
+		<!-- cd ~/gitRepos/forceFeedback && source devel/setup.bash && roslaunch combineJoyAndCompController all_launch_supervision.launch-->
 
 		<!-- Combine control to arduino -->
 		<node pkg="combineJoyAndCompController" 

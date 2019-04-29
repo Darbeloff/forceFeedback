@@ -90,9 +90,9 @@ public:
 
     ////////////force\\\\\\\\\\\\\\\\\
     //force controller gains
-    float Kpf = 50;
+    float Kpf = 100;
     float Kdf = 0;
-    float Kif = 0.02;
+    float Kif = 0.05;
   
     // force controller functions
     float motor_force_calc(void);

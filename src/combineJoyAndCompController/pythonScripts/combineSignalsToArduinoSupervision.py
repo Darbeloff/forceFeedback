@@ -99,7 +99,7 @@ def sendCommand():
 			else:
 				readyCount = 0
 				print('not in range')
-			if readyCount > 100: # been at the right force for 2 seconds...start
+			if readyCount > 200: # been at the right force for 4 seconds...start
 				sendTraj = rospy.set_param("sendTraj",1)
 				readyCount = 0
 
