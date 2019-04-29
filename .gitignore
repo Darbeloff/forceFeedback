@@ -47,7 +47,7 @@ qtcreator-*
 # Emacs
 .#*
 
-/subjectTrials
+src/combineJoyAndCompController/subjectTrials/*
 
 # Catkin custom files
 CATKIN_IGNORE
