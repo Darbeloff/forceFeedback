@@ -3,7 +3,7 @@ import rospy
 import time
 import numpy as np
 from std_msgs.msg import Float32
-from std_msgs.msg import Float32MultiArray
+from std_msgs.msg import Int16MultiArray
 from sensor_msgs.msg import Joy
 from geometry_msgs.msg import WrenchStamped
 
@@ -19,15 +19,15 @@ def defineGlobalVars():
 
 def humCallback(data):
 	# max force
-	maxHumForce = 20 # newtons
+	maxHumForce = 75 # newtons
 
-	# make deadband because joy is annoying
-	joyForce = data.axes[1]
-	if abs(data.axes[1]) < .1:
+	# make deadband
+	fgForce = (data.data[1]-data.data[0])/900.0
+	if abs(fgForce) < 0.1:
 		joyForce = 0
 
 	global humForce
-	humForce = float(maxHumForce*joyForce)
+	humForce = float(maxHumForce*fgForce)
 
 
 def compCallback(data):
@@ -53,7 +53,7 @@ def start():
 	measurement2ArduinoPub = rospy.Publisher('measurement2Arduino', Float32, queue_size = 10)
 
 	# command subscribers
-	humSubscriber = rospy.Subscriber("joy", Joy, humCallback)
+	humSubscriber = rospy.Subscriber("/forceGlovePub", Int16MultiArray, humCallback)
 	compSubscriber = rospy.Subscriber('compForceTraj', Float32, compCallback)
 
 	# measurement subscribers
@@ -84,14 +84,17 @@ def sendCommand():
 		# decide if we are sending the traj
 		if sendTraj == 1:
 			# publish that signal
+			command = (compForce + humForce)/2.0
 			print('sending')
-			cmd2ArduinoPub.publish(compForce)
+			cmd2ArduinoPub.publish(command)
 			measurement2ArduinoPub.publish(measurement)
 
 		else:
 			# send desired force
-			cmd2ArduinoPub.publish(0)
+			cmd2ArduinoPub.publish(humForce)
 			measurement2ArduinoPub.publish(measurement)
+
+			print()
 
 			if (optoforceReading > constantForceOffset - 1) and (optoforceReading < constantForceOffset + 1):
 				readyCount = readyCount + 1
@@ -99,7 +102,7 @@ def sendCommand():
 			else:
 				readyCount = 0
 				print('not in range')
-			if readyCount > 200: # been at the right force for 4 seconds...start
+			if readyCount > 100: # been at the right force for 2 seconds...start
 				sendTraj = rospy.set_param("sendTraj",1)
 				readyCount = 0
 

@@ -5,23 +5,22 @@
 		<param name="sendTraj" value="0" type="double" />
 
 	<!-- Nodes -->
-		<!-- sudo rmmod xpad && sudo xboxdrv -->
 		<!-- roscore -->
-		<!-- rosrun rosserial_python serial_node.py /dev/ttyACM0 -->
-		<!-- rosrun joy joy_node -->
+		<!-- rosrun rosserial_python serial_node.py /dev/ttyACM0 __name:=ard_cmd -->
+		<!-- rosrun rosserial_python serial_node.py /dev/ttyUSB0 __name:=fg_adc -->
 		<!-- cd ~/gitRepos/forceFeedback && source devel/setup.bash && roslaunch optoforce optoforce.launch -->
 		<!-- cd ~/gitRepos/forceFeedback && source devel/setup.bash && roslaunch combineJoyAndCompController allLaunch.launch-->
 
 		<!-- Combine control to arduino -->
 		<node pkg="combineJoyAndCompController" 
-			type="combineSignalsToArduino.py" 
-			name="combineSignalsToArduino" 
+			type="combineSignalsToArduinoFG.py" 
+			name="combineSignalsToArduinoFG" 
 			output="screen"/> 
 
 		<!-- Computer generated control signal -->
 		<node pkg="computerForceTrajectory" 
 			type="computerForceTrajectory.py" 
-			name="computerForceTrajectory"
+			name="computerForceTrajectory" 
 			output="screen"/> 
 
 		<!-- RQT plot -->

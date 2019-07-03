@@ -1,5 +1,0 @@
-rosbagTimestamp,header,seq,stamp,secs,nsecs,frame_id,level,name,msg,file,function,line,topics
-1556556266813675461,,26,,1556556266,620571263,'',2,"""/recorder""","""Subscribing to /optoforce_0""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
-1556556267622791125,,27,,1556556267,622667579,'',2,"""/recorder""","""Subscribing to /command2Arduino""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
-1556556267624113795,,28,,1556556267,623994938,'',2,"""/recorder""","""Subscribing to /compForceTraj""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]
-1556556267626008410,,29,,1556556267,625674113,'',2,"""/recorder""","""Subscribing to /measurement2Arduino""","""/tmp/binarydeb/ros-melodic-rosbag-1.14.3/src/recorder.cpp""","""shared_ptr<ros",210,[]

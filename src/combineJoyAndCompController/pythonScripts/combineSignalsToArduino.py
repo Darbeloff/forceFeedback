@@ -27,7 +27,7 @@ def humCallback(data):
 		joyForce = 0
 
 	global humForce
-	humForce = float(maxHumForce*joyForce)
+	humForce = -1*float(maxHumForce*joyForce)
 
 
 def compCallback(data):
