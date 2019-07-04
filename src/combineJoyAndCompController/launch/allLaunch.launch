@@ -3,6 +3,9 @@
 <launch>
 	<!-- Parameters -->
 		<param name="sendTraj" value="0" type="double" />
+		<param name="letterTime" value="0.400" type="double" />
+		<param name="letterPercentage" value="30.0" type="double" />
+		<param name="trialTime" value="20.0" type="double" />
 
 	<!-- Nodes -->
 		<!-- sudo rmmod xpad && sudo xboxdrv -->
@@ -22,6 +25,12 @@
 		<node pkg="computerForceTrajectory" 
 			type="computerForceTrajectory.py" 
 			name="computerForceTrajectory"
+			output="screen"/> 
+
+		<!-- Visual Distractor -->
+		<node pkg="visual_distractor" 
+			type="tkinterGUI.py" 
+			name="visual_distractor" 
 			output="screen"/> 
 
 		<!-- RQT plot -->

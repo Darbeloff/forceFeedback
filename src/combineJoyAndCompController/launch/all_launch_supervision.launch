@@ -5,6 +5,7 @@
 		<param name="sendTraj" value="0" type="double" />
 		<param name="letterTime" value="1.00" type="double" />
 		<param name="letterPercentage" value="30.0" type="double" />
+		<param name="trialTime" value="60.0" type="double" />
 
 	<!-- Nodes -->
 		<!-- sudo rmmod xpad && sudo xboxdrv -->
@@ -28,7 +29,7 @@
 
 		<!-- Visual Distractor -->
 		<node pkg="visual_distractor" 
-			type="tkinterTestGUIWithROS.py" 
+			type="tkinterGUISupervision.py" 
 			name="visual_distractor" 
 			output="screen"/> 
 

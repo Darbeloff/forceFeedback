@@ -112,7 +112,7 @@ def makeGUI():
 	# how long is the letter up?
 	#letterTime = .400 # 100 ms
 	letterTime = rospy.get_param("letterTime", 0.400)
-	trialTime = 60 # seconds
+	trialTime = rospy.get_param("trialTime", 60.0) # seconds
 	#whitePercentage = 30.0 # 30 percent of letters are white
 	whitePercentage = rospy.get_param("letterPercentage", 30.0)
 
