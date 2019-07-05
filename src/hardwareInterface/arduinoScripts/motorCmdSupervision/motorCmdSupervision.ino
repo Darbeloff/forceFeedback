@@ -1,5 +1,10 @@
 #include "motorClass.h"
 
+// vibration motor
+#include <Wire.h>
+#include "Adafruit_DRV2605.h"
+
+// ros
 #include <ros.h>
 #include <std_msgs/Float32.h>
 
@@ -17,10 +22,20 @@ ros::NodeHandle arduino2Motor;
 std_msgs::Float32 testing;
 ros::Publisher testingPub("testing", &testing);
 
+// vibration motor
+Adafruit_DRV2605 drv;
+
 void commandCallback(const std_msgs::Float32& command)
 {
     // set desired motor force command
     forceMotor.setMotorForce(command.data);
+
+    // set the effect to play
+    //drv.setWaveform(0, 118);  // play effect 
+    //drv.setWaveform(1, 0);       // end waveform
+  
+    // play the effect!
+    //drv.go();
 }
 
 void measurementCallback(const std_msgs::Float32& measurement)
@@ -46,6 +61,11 @@ void setup ()
 
   // advertise testing publisher
   arduino2Motor.advertise(testingPub);
+
+  // vibration motor
+  drv.begin();
+  drv.selectLibrary(1);
+  drv.setMode(DRV2605_MODE_INTTRIG); 
 
 //  Serial.begin(57600);  
 //  forceMotor.setMotorForce(1);
