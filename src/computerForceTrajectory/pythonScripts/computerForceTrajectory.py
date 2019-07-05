@@ -29,7 +29,7 @@ def genTraj(trajPubRate):
 	minForce = -75
 	maxForce = 75
 
-	trialLength = rospy.get_param("trialTime", 20.0) # seconds # seconds
+	trialLength = int(rospy.get_param("trialTime", 20.0)) # seconds # seconds
 
 	# first get time indicies
 	# not sure i need this...timeVec = np.arange(0.0,trialLength,1/trajPubRate)

@@ -3,7 +3,7 @@
 <launch>
 	<!-- Parameters -->
 		<param name="sendTraj" value="0" type="double" />
-		<param name="letterTime" value="0.400" type="double" />
+		<param name="letterTime" value="1.000" type="double" />
 		<param name="letterPercentage" value="30.0" type="double" />
 		<param name="trialTime" value="20.0" type="double" />
 
@@ -31,7 +31,7 @@
 		<node pkg="visual_distractor" 
 			type="tkinterGUI.py" 
 			name="visual_distractor" 
-			output="screen"/> 
+			output="screen"/>  
 
 		<!-- RQT plot -->
 		<node pkg="rqt_plot" 
