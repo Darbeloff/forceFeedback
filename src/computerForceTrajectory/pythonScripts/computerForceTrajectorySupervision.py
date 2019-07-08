@@ -29,7 +29,8 @@ def genTraj(trajPubRate):
 	minForce = -75
 	maxForce = 75
 
-	trialLength = int(rospy.get_param("trialTime", 20.0)) # seconds # seconds
+	trialLength = int(rospy.get_param("trialTime", 60.0)) # seconds # seconds
+	trial_version = rospy.get_param("trial_version",0) # 0 is only start/end, 1 is start/end/up, 2 is start/end/up/buzz
 
 	# random seed
 	random.seed()
@@ -63,11 +64,17 @@ def genTraj(trajPubRate):
 			trajVecSparse[i] = 0
 
 	# now add in "failures"...characterized by a sustained (3 seconds) offset
-	max_fails = 3
-	min_fails = 1
+	max_fails = 4
+	min_fails = 2
 	num_failures = int(random.random()*(max_fails - min_fails) + min_fails)
 
+	if trial_version == 0:
+		num_failures = 0 # this ensures only start/end
+
 	# choose failure start time, end times, and direction...then insert into trajVecSparse
+	buzz_start_time = []
+	fail_direction_prev = -999
+	fail_direction_prev_prev = -999
 	srl_action_range = range(start_time, end_time)
 	srl_action_range_failures = srl_action_range[0::6]
 	srl_action_range_failures = srl_action_range_failures[1:-1]
@@ -75,7 +82,33 @@ def genTraj(trajPubRate):
 	for i in range(0,num_failures):
 		# get end time and direction
 		fail_end_time = 3 + fail_start_times[i]
-		fail_direction = random.sample([-1, 1], 1)
+
+		# if only start/end/up
+		if trial_version == 1:
+			fail_direction = 1 # always up
+
+		# if only start/end/up/buzz
+		if trial_version == 2:
+			fail_direction = random.sample([0, 1], 1)
+			fail_direction = fail_direction[0]
+
+			# logic to ensure we get at least one up and at least one buzz
+			if i == 2 and fail_direction_prev == fail_direction_prev_prev and fail_direction_prev == 1:
+				fail_direction = 0
+			if i == 2 and fail_direction_prev == fail_direction_prev_prev and fail_direction_prev == 0:
+				fail_direction = 1
+			if i == 1 and num_failures == 2 and fail_direction_prev == 1:
+				fail_direction = 0
+			if i == 1 and num_failures == 2 and fail_direction_prev == 0:
+				fail_direction = 1
+
+			# logic to catch the buzzes and log them
+			if fail_direction == 0:
+				buzz_start_time.append(fail_start_times[i])
+
+		# assign previous direction logic
+		fail_direction_prev_prev = fail_direction_prev
+		fail_direction_prev = fail_direction
 
 		# insert into sparse trajectory
 		for j in range(fail_start_times[i],fail_end_time):
@@ -87,6 +120,13 @@ def genTraj(trajPubRate):
 	interpFun = interpolate.interp1d(np.arange(0,len(trajVecSparse),1),trajVecSparse,kind="cubic")
 	timeVec = np.arange(0.0,trialLength-1,1/trajPubRate)
 	trajVec = interpFun(timeVec)
+
+	# now add in buzz signal...janky!!!
+	if trial_version == 2 and len(buzz_start_time) > 0:
+		for i in range(0,len(buzz_start_time)):
+			print(buzz_start_time[i])
+			trajVec[int(buzz_start_time[i]/60.0*5900)] = -1.0 # converting to the interpolated traj
+
 	return trajVec
 
 def sendTraj(trajPubRate, trajVec):

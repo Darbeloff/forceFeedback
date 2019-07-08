@@ -35,6 +35,13 @@ def compCallback(data):
 	global compForce
 	compForce = float(data.data)
 
+	if compForce == -1.0: # send a buzz
+		compForce = 5.0 # send a default instead
+
+		# tell arduino to buzz
+		buzz2ArduinoPub.publish(1.0)
+
+
 
 def optoforceCallback(data):
 	# get and assign computer velocity to global
@@ -51,6 +58,8 @@ def start():
 	cmd2ArduinoPub = rospy.Publisher('command2Arduino', Float32, queue_size = 10)
 	global measurement2ArduinoPub
 	measurement2ArduinoPub = rospy.Publisher('measurement2Arduino', Float32, queue_size = 10)
+	global buzz2ArduinoPub
+	buzz2ArduinoPub = rospy.Publisher('buzz2Arduino', Float32, queue_size = 10)
 
 	# command subscribers
 	humSubscriber = rospy.Subscriber("joy", Joy, humCallback)
