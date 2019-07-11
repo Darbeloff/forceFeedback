@@ -39,12 +39,10 @@ void measurementCallback(const std_msgs::Float32& measurement)
 
 void buzzCallback(const std_msgs::Float32& buzz)
 {
-  // set the effect to play
-  drv.setWaveform(0, 118);  // play effect
-  drv.setWaveform(1, 0);    // end waveform
-
-  // play the effect!
-  drv.go();
+  // set the effect to play...plays a strong buzz for three seconds
+  drv.setRealtimeValue(76);
+  delay(3000);
+  drv.setRealtimeValue(0x00);
 }
 
 
@@ -69,8 +67,8 @@ void setup ()
 
   // vibration motor
   drv.begin();
-  drv.selectLibrary(1);
-  drv.setMode(DRV2605_MODE_INTTRIG);
+  // Set Real-Time Playback mode
+  drv.setMode(DRV2605_MODE_REALTIME);
 
   //  Serial.begin(57600);
   //  forceMotor.setMotorForce(1);
