@@ -37,12 +37,17 @@ void measurementCallback(const std_msgs::Float32& measurement)
   forceMotor.sentMotorForce = measurement.data;
 }
 
+bool stop_buzz_flag = false;
+unsigned long curr_time = 0;
+unsigned long buzz_start_time = 0;
+unsigned long desired_buzz_length = 3000; // three seconds
 void buzzCallback(const std_msgs::Float32& buzz)
 {
-  // set the effect to play...plays a strong buzz for three seconds
+  // set the effect to play...plays a strong buzz and starts timer for three seconds
   drv.setRealtimeValue(76);
-  delay(3000);
-  drv.setRealtimeValue(0x00);
+
+  buzz_start_time = millis(); 
+  stop_buzz_flag = true; 
 }
 
 
@@ -92,6 +97,13 @@ void loop ()
 
     // reset
     printing = 0;
+  }
+
+  curr_time = millis();
+  if (stop_buzz_flag == true && (curr_time - buzz_start_time > desired_buzz_length))
+  {
+    drv.setRealtimeValue(0x00); // turn off buzzer
+    stop_buzz_flag = false; 
   }
 
   // control motor

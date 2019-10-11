@@ -90,7 +90,7 @@ public:
 
     ////////////force\\\\\\\\\\\\\\\\\
     //force controller gains
-    float Kpf = 100;
+    float Kpf = 150;
     float Kdf = 0;
     float Kif = 0.05;
   
